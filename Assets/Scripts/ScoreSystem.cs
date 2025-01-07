@@ -16,7 +16,14 @@ public class ScoreSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (GameObject.FindGameObjectWithTag("Player").GetComponent<playerController>().isGameOver)
+        {
+            if (PlayerPrefs.GetInt("HighScore") < score)
+            {
+                PlayerPrefs.SetInt("HighScore", score);
+                Debug.Log("New Hign Score is :"+score);
+            }
+        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

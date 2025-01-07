@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class obstacleSpawner : MonoBehaviour
 {
     public GameObject obstacle1,obstacle2,obstacle3;
-    private float obstacleSpawnInterval = 2.5f;
+    [InspectorWide ]
+    public  float obstacleSpawnInterval = 2.5f;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,7 +17,10 @@ public class obstacleSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      
+      if (GameObject.FindGameObjectWithTag("Player").GetComponent<playerController>().isGameOver)
+        {
+            StopCoroutine("SpawnObstacles");
+        }
     }
     private void SpawnObstacle()
     {
